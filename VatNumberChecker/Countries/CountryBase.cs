@@ -7,7 +7,7 @@ namespace VatNumberChecker.Countries
         public virtual bool StripLetters => true;
         
         /// <summary>
-        /// Validates VAT number according to specific country
+        /// Validates VAT number according to specific euCountry
         /// </summary>
         public abstract string Validate(string vat);
         
