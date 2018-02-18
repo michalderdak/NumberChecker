@@ -12,97 +12,97 @@ namespace VatNumberChecker
         /// Validates VAT number
         /// </summary>
         /// <returns>Corrected VAT number in VatNumber object</returns>
-        public static VatNumber Validate(string vat, Country country)
+        public static VatNumber Validate(string vat, EUCountry euCountry)
         {
-            string countryCode = country.ToString().ToUpper();
+            string countryCode = euCountry.ToString().ToUpper();
             vat = vat.ToUpper();
 
             CountryBase countryBase;
 
-            switch (country)
+            switch (euCountry)
             {
-                case Country.AT:
+                case EUCountry.AT:
                     countryBase = new AT();
                     break;
-                case Country.BE:
+                case EUCountry.BE:
                     countryBase = new BE();
                     break;
-                case Country.BG:
+                case EUCountry.BG:
                     countryBase = new BG();
                     break;
-                case Country.CY:
+                case EUCountry.CY:
                     countryBase = new CY();
                     break;
-                case Country.CZ:
+                case EUCountry.CZ:
                     countryBase = new CZ();
                     break;
-                case Country.DE:
+                case EUCountry.DE:
                     countryBase = new DE();
                     break;
-                case Country.DK:
+                case EUCountry.DK:
                     countryBase = new DK();
                     break;
-                case Country.EE:
+                case EUCountry.EE:
                     countryBase = new EE();
                     break;
-                case Country.EL:
+                case EUCountry.EL:
                     countryBase = new EL();
                     break;
-                case Country.ES:
+                case EUCountry.ES:
                     countryBase = new ES();
                     break;
-                case Country.FI:
+                case EUCountry.FI:
                     countryBase = new FI();
                     break;
-                case Country.FR:
+                case EUCountry.FR:
                     countryBase = new FR();
                     break;
-                case Country.GB:
+                case EUCountry.GB:
                     countryBase = new GB();
                     break;
-                case Country.HR:
+                case EUCountry.HR:
                     countryBase = new HR();
                     break;
-                case Country.HU:
+                case EUCountry.HU:
                     countryBase = new HU();
                     break;
-                case Country.IE:
+                case EUCountry.IE:
                     countryBase = new IE();
                     break;
-                case Country.IT:
+                case EUCountry.IT:
                     countryBase = new IT();
                     break;
-                case Country.LT:
+                case EUCountry.LT:
                     countryBase = new LT();
                     break;
-                case Country.LU:
+                case EUCountry.LU:
                     countryBase = new LU();
                     break;
-                case Country.LV:
+                case EUCountry.LV:
                     countryBase = new LV();
                     break;
-                case Country.MT:
+                case EUCountry.MT:
                     countryBase = new MT();
                     break;
-                case Country.NL:
+                case EUCountry.NL:
                     countryBase = new NL();
                     break;
-                case Country.PL:
+                case EUCountry.PL:
                     countryBase = new PL();
                     break;
-                case Country.PT:
+                case EUCountry.PT:
                     countryBase = new PT();
                     break;
-                case Country.RO:
+                case EUCountry.RO:
                     countryBase = new RO();
                     break;
-                case Country.SE:
+                case EUCountry.SE:
                     countryBase = new SE();
                     break;
-                case Country.SI:
+                case EUCountry.SI:
                     countryBase = new SI();
                     break;
-                case Country.SK:
+                case EUCountry.SK:
                     countryBase = new SK();
                     break;
                 default:
@@ -111,10 +111,10 @@ namespace VatNumberChecker
 
             if (countryBase.StripLetters)
             {
-                return new VatNumber(country, countryBase.Validate(Strip(vat)));
+                return new VatNumber(euCountry, countryBase.Validate(Strip(vat)));
             }
 
-            return new VatNumber(country, countryBase.Validate(StripNoLetters(vat, countryCode)));
+            return new VatNumber(euCountry, countryBase.Validate(StripNoLetters(vat, countryCode)));
         }
 
         private static string Strip(string vat)

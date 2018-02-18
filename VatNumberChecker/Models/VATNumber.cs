@@ -4,20 +4,20 @@ namespace VatNumberChecker.Models
 {
     public class VatNumber
     {
-        private EuropeanCountry _europeanCountry;
+        private EUCountry _euCountry;
         private string _number;
 
         /// <summary>
-        /// EU europeanCountry prefix of VAT number
+        /// EU euCountry prefix of VAT number
         /// </summary>
-        public EuropeanCountry EuropeanCountry
+        public EUCountry EUCountry
         {
-            get { return _europeanCountry; }
-            set { _europeanCountry = value; }
+            get { return _euCountry; }
+            set { _euCountry = value; }
         }
 
         /// <summary>
-        /// Actual VAT number without europeanCountry prefix
+        /// Actual VAT number without euCountry prefix
         /// </summary>
         public String Number
         {
@@ -25,22 +25,22 @@ namespace VatNumberChecker.Models
             set { _number = value; }
         }
 
-        public VatNumber(EuropeanCountry europeanCountry, string number)
+        public VatNumber(EUCountry euCountry, string number)
         {
-            _europeanCountry = europeanCountry;
+            _euCountry = euCountry;
             _number = number;
         }
 
         public override string ToString()
         {
-            return EuropeanCountry.ToString().ToUpper() + Number;
+            return EUCountry.ToString().ToUpper() + Number;
         }
     }
 
     /// <summary>
     /// EU state members
     /// </summary>
-    public enum EuropeanCountry
+    public enum EUCountry
     {
         BE = 0,
         BG = 1,
