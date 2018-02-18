@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageProjectUrl>https://github.com/michalderdak/NumberChecker</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/michalderdak/NumberChecker</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/michalderdak/NumberChecker</RepositoryUrl>
+    <Authors>Michal Derdak</Authors>
+    <Company />
+    <Description>Library for offline validation/formatting of European VAT numbers</Description>
   </PropertyGroup>
 
 </Project>
