@@ -14,3 +14,15 @@ Currently supports EU VAT numbers only
   vatNumber.EUCountry //Returns enum EUCountry which indicates country prefix for VAT number
   
 ```
+
+Validate function can raise 4 different exceptions
+
+```C#
+
+  InvalidChecksumException()
+  InvalidCountryException()
+  InvalidFormatException()
+  InvalidLengthException()
+  
+```
+
