@@ -6,7 +6,8 @@ Currently supports EU VAT numbers only
 # Usage
 ```C#
 
-  VatNumber vatNumber = Validate("vatnumber", Country.DK);
+  //VAT number can be  supplied either with or without coutry prefix
+  VatNumber vatNumber = Validate("vatnumber", Country.DK); 
   
   vatNumber.ToString(); //Returns EU country prefix + VAT number - DK12345678
   vatNumber.Number //Returns actual VAT number without country prefix
