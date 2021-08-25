@@ -132,6 +132,14 @@ namespace NumberCheckerTest
         [TestCase(EUCountry.LT, "LT 100001919017", "LT100001919017")]
         [TestCase(EUCountry.LT, "100001919018", null)]
         [TestCase(EUCountry.LT, "100004801610", "LT100004801610")]
+        [TestCase(EUCountry.LT, "100006425312", "LT100006425312")]
+        [TestCase(EUCountry.LT, "116818416", "LT116818416")]
+        [TestCase(EUCountry.LT, "633557219", "LT633557219")]
+        [TestCase(EUCountry.LT, "114294716", "LT114294716")]
+        [TestCase(EUCountry.LT, "799079219", "LT799079219")]
+        [TestCase(EUCountry.LT, "100009953010", "LT100009953010")]
+        [TestCase(EUCountry.LT, "100009500418", "LT100009500418")]
+        [TestCase(EUCountry.LT, "100009232328", null)]
 
         //Luxembourg
         [TestCase(EUCountry.LU, "LU 150 274 42", "LU15027442")]

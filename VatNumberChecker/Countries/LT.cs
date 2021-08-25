@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System;
 using VatNumberChecker.Exceptions;
 
 namespace VatNumberChecker.Countries
@@ -35,27 +35,71 @@ namespace VatNumberChecker.Countries
         /// </summary>
         private bool Checksum(string vat)
         {
-            int sum = 0;
-            int checkDigit = CharUnicodeInfo.GetDigitValue(vat[vat.Length - 1]);
-            vat = vat.Substring(0, vat.Length - 1);
+            int[] Multipliers = { 3, 4, 5, 6, 7, 8, 9, 1 };
 
-            for (int i = 0; i < vat.Length; i++)
+            if (vat.Length == 9)
             {
-                sum += (1 + Mod(i, 9)) * CharUnicodeInfo.GetDigitValue(vat[i]);
-            }
-
-            int check = Mod(sum, 11);
-
-            if (check == 10)
-            {
-                for (int i = 0; i < vat.Length; i++)
+                int sum = 0;
+                for (int index = 0; index < 8; index++)
                 {
-                    sum += (1 + Mod(i + 2, 9)) * CharUnicodeInfo.GetDigitValue(vat[i]);
+                    sum += CharToInt(vat[index]) * (index + 1);
                 }
+
+                int checkDigit = sum % 11;
+                if (checkDigit == 10)
+                {
+                    checkDigit = Sum(vat, Multipliers);
+                }
+
+                if (checkDigit == 10)
+                {
+                    checkDigit = 0;
+                }
+                
+                bool isValid = checkDigit % 11 == CharToInt(vat[8]);
+
+                return isValid;
             }
 
-            return checkDigit == Mod(Mod(check, 11), 10);
+            return TemporarilyRegisteredTaxPayers(vat);
         }
 
+        private bool TemporarilyRegisteredTaxPayers(string vat)
+        {
+            int[] multipliersTemporarily = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2 };
+            int[] multipliersDoubleCheck = { 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4 };
+
+            int total = Sum(vat, multipliersTemporarily);
+
+            if (total % 11 == 10)
+            {
+                total = Sum(vat, multipliersDoubleCheck);
+            }
+
+            total %= 11;
+            if (total == 10)
+            {
+                total = 0;
+            }
+
+            bool isValid = total == CharToInt(vat[11]);
+            return isValid;
+        }
+
+        private int CharToInt(char c)
+        {
+            return Convert.ToInt32(c) - Convert.ToInt32('0');
+        }
+
+        private int Sum(string input, int[] multipliers, int start = 0)
+        {
+            int num = 0;
+            for (int i = start; i < multipliers.Length; i++)
+            {
+                int num2 = multipliers[i];
+                num += CharToInt(input[i]) * num2;
+            }
+            return num;
+        }
     }
 }
