@@ -219,15 +219,27 @@ namespace NumberCheckerTest
         [TestCase(EUCountry.GB, "GBGD888855501", null)]
         [TestCase(EUCountry.GB, "GBHA888858301", "GBHA888858301")]
         [TestCase(EUCountry.GB, "GBHA888844401", null)]
+
+        //Greek
+        [TestCase(EUCountry.GR, "EL998332261", "EL998332261")]
+        [TestCase(EUCountry.GR, "GR998332261", "EL998332261")]
+        [TestCase(EUCountry.GR, "EL094421875", "EL094421875")]
+        [TestCase(EUCountry.GR, "EL145458671", "EL145458671")]
+        [TestCase(EUCountry.GR, "EL127722767", "EL127722767")]
+        [TestCase(EUCountry.GR, "EL127722768", null)]
+        [TestCase(EUCountry.GR, "EL1277", null)]
+        [TestCase(EUCountry.GR, "EL127722769", null)]
+
         public void Validation(EUCountry euCountry, string vat, string expectedResult)
         {
             try
             {
-                Assert.IsTrue(expectedResult == VatChecker.Validate(vat, euCountry).ToString());
+                string vatNumber = VatChecker.Validate(vat, euCountry).ToString();
+                Assert.IsTrue(expectedResult == vatNumber, vatNumber);
             }
             catch (Exception e)
             {
-                Assert.IsNull(expectedResult);
+                Assert.IsNull(expectedResult, e.ToString());
             }
         }
     }

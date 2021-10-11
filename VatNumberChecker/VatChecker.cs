@@ -105,6 +105,9 @@ namespace VatNumberChecker
                 case EUCountry.SK:
                     countryBase = new SK();
                     break;
+                case EUCountry.GR:
+                    countryBase = new GR();
+                    return new VatNumberGR(euCountry, countryBase.Validate(StripNoLetters(vat, countryCode)));
                 default:
                     throw new InvalidCountryException();
             }

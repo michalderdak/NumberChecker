@@ -70,5 +70,6 @@ namespace VatNumberChecker.Models
         FI = 25,
         SE = 26,
         GB = 27,
+        GR = 28
     }
 }
